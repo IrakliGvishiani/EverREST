@@ -1,0 +1,201 @@
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$text-dark: #2d3748;
+$text-medium: #4a5568;
+$text-light: #718096;
+$border-color: #e2e8f0;
+$placeholder-color: #a0aec0;
+
+$border-radius: 10px;
+$container-radius: 20px;
+$spacing-unit: 20px;
+
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin gradient-bg {
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+}
+
+@mixin input-style {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid $border-color;
+    border-radius: $border-radius;
+    font-size: 15px;
+    color: $text-dark;
+    transition: all 0.3s ease;
+    background: #ffffff;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &::placeholder {
+        color: $placeholder-color;
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cont{
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    @include gradient-bg;
+    min-height: 100vh;
+    @include flex-center;
+    padding: $spacing-unit;
+}
+
+.container {
+    background: #ffffff;
+    border-radius: $container-radius;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    animation: slideUp 0.5s ease-out;
+   
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h1 {
+        color: $text-dark;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: $text-light;
+        font-size: 14px;
+    }
+}
+
+.form-group {
+    margin-bottom: $spacing-unit;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: $spacing-unit;
+}
+
+label {
+    display: block;
+    color: $text-medium;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    @include input-style;
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: rgb(18, 18, 233);
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba($primary-color, 0.4);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 25px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: $spacing-unit;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 20px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}

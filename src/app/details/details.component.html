@@ -1,0 +1,146 @@
+
+
+
+<div class="hdr">
+    <h1>Details</h1>
+</div>
+
+<div class="container" *ngIf="product">
+ 
+
+        <div class="product-card">
+            <div class="product-content">
+                
+                <div class="gallery-section">
+                    <div class="main-image">
+                        <span class="badge"> Discount {{product.price.discountPercentage}}%</span>
+                        
+                          
+                        <div id="carouselExample" class="carousel slide">
+  
+  <div class="carousel-indicators">
+    <button 
+      *ngFor="let el of product.images; let i = index"
+      type="button" 
+      data-bs-target="#carouselExample" 
+      [attr.data-bs-slide-to]="i"
+      [class.active]="i === 0"
+      [attr.aria-current]="i === 0 ? 'true' : null"
+      [attr.aria-label]="'Slide ' + (i + 1)"
+    ></button>
+  </div>
+
+
+  <div class="carousel-inner">
+    <div 
+      class="carousel-item" 
+      *ngFor="let el of product.images; let i = index"
+      [class.active]="i === 0"
+    >
+      <img [src]="el" class="d-block w-100" alt="Product image">
+    </div>
+  </div>
+  
+  
+  <button class="carousel-control-prev"  type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" style="background-color: black;" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" style="background-color: black;" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+                     
+                        
+                    </div>
+
+                    <h2>Give Your Feedback and Rate this Product</h2>
+
+                         <button class="rateProd" (click)="toggle()">Rate</button>
+    <div class="ratee" *ngIf="showInput" >
+      <p>Rate Product</p>
+        <input style="border-radius: 20px;border: none;background-color: rgb(105, 102, 102);
+        padding-left: 15px;padding: 5px 10px;color: white;" type="number" [(ngModel)]="rateNum">
+
+        <button class="btn" (click)="rate(product._id)">Submit</button>
+    </div>
+                    
+                </div>
+
+          
+                <div class="details-section">
+                    <h1>{{product.title}}</h1>
+                    <h2 style="font-size: 20px;">Category : {{product.category.name}}</h2>
+                    
+                    <div class="rating">
+                        <div class="stars">
+                            <span>★★★★★</span>
+                        </div>
+                        <span class="reviews">({{product.rating}} Rating)</span>
+                    </div>
+
+                    <p>Warranty: {{product.warranty}}</p>
+
+                    <div class="price-section">
+                        <span class="current-price">{{product.price.current}} {{product.price.currency}}</span>
+                        <span class="original-price">{{product.price.beforeDiscount}} {{product.price.currency}}</span>
+                    </div>
+
+                    <p class="description">
+                        {{product.description}}
+                    </p>
+
+                   
+
+                    <div class="quantity-selector">
+                        <h3>Amount</h3> <p style="font-size: 13px;color: gray;">(Product in Stock : {{product.stock}})</p>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                            <span class="quantity-display" id="quantity">1</span>
+                            <button class="quantity-btn" onclick="changeQuantity(1)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="add-to-cart" onclick="addToCart()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                            Add To Cart
+                        </button>
+
+                       
+                    </div>
+                
+
+                    <div class="features-list">
+                        <h3>Ratings</h3>
+                        <ul  *ngFor="let el of product.ratings" >
+                           <li>Anonymus User:  {{el.value}}(★) Date Uploaded: {{el.createdAt.split('T')[0]}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+    </div>
+
+
+
+
+
+

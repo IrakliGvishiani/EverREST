@@ -1,0 +1,19 @@
+<nav>
+
+    <div class="ph">
+        <img [routerLink]="'/home'" class="image" src="https://everrest.educata.dev/logo.png">
+        <h3 class="hi">Welcome to EverREST</h3>
+    </div>
+
+    <ul style="margin: 0;">
+        <li><a href="">cart</a></li>
+        <li><a [routerLink]="'/sign-up'">Sign Up</a></li>
+        <li><a [routerLink]="'/sign-in'">Sign In</a></li>
+        <div class="userPic">
+           
+            <img style="width: 30px;height: 30px;border-radius: 50%;" [src]="data.avatar" alt="">
+             <p style="color: white;">{{data.firstName}}</p>
+        </div>
+        <button *ngIf="hasToken"  (click)="SignOut()" class="out">Sign Out <i style="color: black;" class="fa-solid fa-right-from-bracket"></i></button>
+    </ul>
+</nav>

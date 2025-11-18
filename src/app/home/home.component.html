@@ -1,0 +1,120 @@
+
+
+
+
+
+
+
+    <div class="rame">
+         <div class="search-container">
+
+        <form class="search-form" onsubmit="handleSearch(event)">
+            <div class="form-group full-width">
+                <label for="keywords">Keyword Search</label>
+                <input type="text" [(ngModel)]="keyword" id="keywords" name="keywords" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select [(ngModel)]="category" id="category" name="category">
+                    <option value="1">Laptops</option>
+                    <option value="2">Phones</option>
+           
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="brand">Brand</label>
+                <select [(ngModel)]="brand" id="brand" name="brand">
+                    
+                    <option *ngFor="let el of brandArr" [value]="el">{{el}}</option>
+                
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Rating</label>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        
+                        <input name="rate" [(ngModel)]="ratee" type="number" placeholder="Amount of Rating(★)">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Price(Min-Max)</label>
+                <div class="price-group">
+                    <input type="number" [(ngModel)]="minPrice" id="price-min" name="price_min" placeholder="Min Price" min="0" step="50">
+                    <input type="number" [(ngModel)]="maxPrice" id="price-max" name="price_max" placeholder="Max Price" min="0" step="50">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="sort-by">Sort by</label>
+                <select id="sort-by" name="sort_by" [(ngModel)]="sort">
+               
+                    <option value="price">Price</option>
+                    <option value="rating">Rating</option>
+                    <option value="issue_date">Issue Date</option>
+                    <option value="title">Title</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sort-direction">Sort Direction</label>
+                <select id="sort-direction" name="sort_direction" [(ngModel)]="sortDir">
+                    <option value="asc">asc↑</option>
+                    <option value="desc">desc↓</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" (click)="Search()" class="btn-search">Find</button>
+                <button type="reset" class="btn-reset" (click)="goToPage(1)">Reset</button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="con">
+    <div class="card" style="width: 18rem;" *ngFor="let el of products">
+  <img style="background-size: cover;height: 230px;" [src]="el.thumbnail" class="card-img-top" alt="image">
+  <div class="card-body">
+    <h5 class="card-title">{{el.title}}</h5>
+    <p>{{el.brand}}</p>
+    <p class="card-text">{{el.price.current}} {{el.price.currency}}</p>
+    <a (click)="goWId(el._id)" class="btn btn-primary">Details</a>
+  </div>
+</div>
+</div>
+
+<div class="conta">
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" (click)="prevPage()">Previous</a></li>
+    <li class="page-item"><a class="page-link"  (click)="goToPage(1)">1</a></li>
+    <li class="page-item"><a class="page-link"  (click)="goToPage(2)">2</a></li>
+    <li class="page-item"><a class="page-link"  (click)="goToPage(3)">3</a></li>
+    <li class="page-item"><a class="page-link" (click)="goToPage(4)">4</a></li>
+    <li class="page-item"><a class="page-link" (click)="goToPage(5)" >5</a></li>
+    <li class="page-item"><a class="page-link"  (click)="nextPage()">Next</a></li>
+  </ul>
+</nav>
+</div>
+
+
+
+
+

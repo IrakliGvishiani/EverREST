@@ -1,0 +1,32 @@
+
+
+    <div class="container">
+   
+        
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Sign In to Your Account</p>
+
+
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@email.com" autocomplete="email"
+             [(ngModel)]="email">
+        </div>
+
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"
+             [(ngModel)]="password">
+        </div>
+
+        <div class="forgot-password">
+            <a href="#" >Change Password</a>
+        </div>
+
+        <button class="btn" (click)="Sign()">Sign In</button>
+
+    
+
+        <div class="signup-link">
+           Don't Have an Account? <a [routerLink]="'/sign-up'">Sign Up</a>
+        </div>
