@@ -7,13 +7,26 @@
 
     <ul style="margin: 0;">
         <li><a href="">cart</a></li>
-        <li><a [routerLink]="'/sign-up'">Sign Up</a></li>
-        <li><a [routerLink]="'/sign-in'">Sign In</a></li>
+        <li *ngIf="!isAuth()"><a [routerLink]="'/sign-up'">Sign Up</a></li>
+        <li *ngIf="!isAuth()" ><a [routerLink]="'/sign-in'">Sign In</a></li>
         <div class="userPic">
            
-            <img style="width: 30px;height: 30px;border-radius: 50%;" [src]="data.avatar" alt="">
-             <p style="color: white;">{{data.firstName}}</p>
+            <img (click)="showAcc()"  *ngIf="isAuth()" style="width: 40px;height: 40px;border-radius: 50%;cursor: pointer;" [src]="data.avatar" alt="">
         </div>
-        <button *ngIf="hasToken"  (click)="SignOut()" class="out">Sign Out <i style="color: black;" class="fa-solid fa-right-from-bracket"></i></button>
+        <div  class="acc" *ngIf="show">
+            <div class="avat" style="display: flex;width: 100%;justify-content: center;align-items: center;
+            flex-direction: column;gap: 4px;padding-top: 10px;padding-bottom: 10px;">
+            <p style="color: white;">My Account</p>
+                <img [src]="data.avatar" style="width: 30px;height: 30px;border-radius: 50%;" alt="">
+                <p style="font-size: 10px;color: rgb(255, 255, 255);">{{data.email}}</p>
+            </div>
+            <p style="color: white;font-size: 13px;padding-left: 10px;">User: {{data.firstName}} {{data.lastName}}</p>
+            <p style="color: white;font-size: 13px;padding-left: 10px;">Role: {{data.role}}</p>
+
+            <div class="butDiv">
+                <button class="accBut" [routerLink]="'/account'">Manage <i class="fa-solid fa-gear"></i></button>
+                <button class="LogBut" (click)="SignOut()">Sign Out <i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+        </div>
     </ul>
 </nav>

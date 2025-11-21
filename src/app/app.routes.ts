@@ -24,6 +24,14 @@ export const routes: Routes = [
         path: 'details',
         loadComponent : () => import('./details/details.component').then(com => com.DetailsComponent)
     },
+       {
+        path: 'account',
+        loadComponent : () => import('./account/account.component').then(com => com.AccountComponent)
+    },
+        {
+        path: 'recovery',
+        loadComponent : () => import('./recovery/recovery.component').then(com => com.RecoveryComponent)
+    },
     {
         path: '**',
         component: ErrorComponent

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { ApiService } from '../services/api.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -13,18 +14,18 @@ import Swal from 'sweetalert2';
 })
 export class SignInComponent {
 
-  constructor(private api : ApiService,private route : Router){
+  constructor(private api : ApiService,private route : Router,private auth : AuthService){
 
   }
 
 
-  email = ''
-  password = ''
+  // email = ''
+  // password = ''
 
 
 
-  Sign(){
-    if(!this.email || !this.password){
+  Sign(inf : NgForm){
+    if(!inf.valid){
             Swal.fire({
                 title: "error!",
                 text: "Fill Fields",
@@ -35,8 +36,8 @@ export class SignInComponent {
       
       this.api.postO('https://api.everrest.educata.dev/auth/sign_in', {
         
-     email : this.email,
-     password : this.password
+     email : inf.value.email,
+     password : inf.value.password
 
       }).subscribe(
         {
@@ -49,8 +50,11 @@ export class SignInComponent {
 
               localStorage.setItem('access_token', (succ as any).access_token);
               localStorage.setItem('refresh_token',(succ as any).refresh_token);
+               this.auth.login()
 
               console.log((succ as any).access_token);
+
+  
               
               setTimeout(() => {
                 this.route.navigateByUrl('/home')

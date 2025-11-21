@@ -41,14 +41,27 @@ postO(url: string, obj: any) {
 }
 
 
+//PATCH
+
+patch(url : string, obj: any){
+
+  let token = localStorage.getItem(`access_token`)
+
+  return this.http.patch(url,obj, {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    })
+  })
+}
+
+// patch(url : string,obj: any){
+//   return this.http.patch(url,obj)
+// }
 
 
 
-
-
-
-///SEARCH
-search<T = any>(filters : any): Observable<T>{
+// SEARCH
+search(filters : any){
   let params = new HttpParams
 
   Object.keys(filters).forEach(key => {
@@ -61,6 +74,6 @@ search<T = any>(filters : any): Observable<T>{
     }
   })
 
-  return this.http.get<T>('https://api.everrest.educata.dev/shop/products/search', {params})
+  return this.http.get('https://api.everrest.educata.dev/shop/products/search', {params})
 }
 }

@@ -4,7 +4,8 @@ import { Route, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Product, ProductResp } from '../models/products';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Token } from '@angular/compiler';
 
 
 @Component({
@@ -21,50 +22,89 @@ export class HomeComponent {
 
 
  
-access  =  localStorage.getItem('access_token');
-refresh = localStorage.getItem('refresh_token');
 
-id  = ''
 
-keyword! : string 
+// id  = ''
 
-category! : string
+// keyword! : string 
 
-brand! : string
+// category! : string
 
-ratee! : number
+// brand! : string
 
-minPrice! : number
-maxPrice! : number
+// ratee! : number
 
-sort! : string
-sortDir! : string
+// minPrice! : number
+// maxPrice! : number
+
+// sort! : string
+// sortDir! : string
 
   ngOnInit(){
-     console.log(this.ratee);
+
      
     
     if(this.refresh === null || this.access === null){
       this.route.navigateByUrl('/sign-up')
     }
 
+    this.refreshToken()
+
+
+
+
     this.getBrands()
 
   this.loadProducts()
 
-this.api.postO('https://api.everrest.educata.dev/auth/refresh', {
-  access_token: this.access,
-  refresh_token: this.refresh
-})
-.subscribe({
-  next: s => console.log(s),
-  error: e => console.log(e)
-});
+
 
   console.log(this.access);
   
 
   }
+
+  access  =  localStorage.getItem('access_token');
+refresh = localStorage.getItem('refresh_token');
+
+
+refreshToken() {
+  this.api.postO(
+    'https://api.everrest.educata.dev/auth/refresh',
+    {
+      access_token: this.access,
+      refresh_token: this.refresh
+    }
+  ).subscribe({
+    next: (res: any) => {
+      localStorage.setItem('access_token', res.access_token);
+      this.access = res.access_token;
+      console.log("Token refreshed");
+
+    },
+    error: err => {
+      console.log("Refresh failed", err);
+      this.route.navigateByUrl('/sign-up');
+    }
+  });
+}
+
+
+// getTokenExpiration(token: string): number | null {
+//   if (!token || !token.includes('.')) return null;
+
+//   try {
+//     const payload = JSON.parse(atob(token.split('.')[1]));
+//     return payload.exp ? payload.exp * 1000 : null;
+//   } catch {
+//     return null;
+//   }
+// }
+// isTokenExpired(token: string): boolean {
+//   const exp = this.getTokenExpiration(token);
+//   if (!exp) return true;
+//   return Date.now() > exp;
+// }
     plus(){
       this.pageIndex+=1
         
@@ -117,19 +157,33 @@ this.api.postO('https://api.everrest.educata.dev/auth/refresh', {
     })
   }
 
-  Search(){
+  // Search(i : NgForm){
+  //   this.api.gett(`https://api.everrest.educata.dev/shop/products/search?keywords=${i.value.keywords}&category_id=${i.value.category_id}&brand=${i.value.brand}&rating=${i.value.rating}&price_min=${i.value.price_min}&price_max=${i.value.price_max}&sort_by=${i.value.sort_by}&sort_direction=${i.value.sort_direction}`)
+  //   .subscribe({
+  //     next: (s : ProductResp) => {
+  //       this.data = s
+  //       this.products = s.products
+  //     },
+  //     error : err => {
+  //       console.log(err);
+        
+  //     }
+  //   })
+  // }
+
+  Search(i : NgForm){
     this.api.search({
       page_size : '40',
-      keywords : this.keyword,
-      category_id : this.category,
-      brand : this.brand,
-      rating : this.ratee,
-      price_min : this.minPrice,
-      price_max :  this.maxPrice,
-      sort_by : this.sort,
-      sort_direction : this.sortDir
+      keywords : i.value.keywords,
+      category_id : i.value.category_id,
+      brand : i.value.brand,
+      rating : i.value.rating,
+      price_min :  i.value.price_min,
+      price_max :  i.value.price_max,
+      sort_by : i.value.sort_by,
+      sort_direction : i.value.sort_direction
     }).subscribe({
-      next: (resp : ProductResp) => {
+      next: (resp : any) => {
         console.log(resp);
 
         this.data = resp
@@ -181,3 +235,8 @@ this.api.postO('https://api.everrest.educata.dev/auth/refresh', {
   
 
 }
+
+
+
+
+//https://api.everrest.educata.dev/shop/products/search?keywords=asus&category_id=1&brand=asus&rating=4&price_min=100&price_max=5000&sort_by=price&sort_direction=desc

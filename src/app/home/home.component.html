@@ -8,15 +8,15 @@
     <div class="rame">
          <div class="search-container">
 
-        <form class="search-form" onsubmit="handleSearch(event)">
+        <form class="search-form" #SearchForm="ngForm" (ngSubmit)="Search(SearchForm)">
             <div class="form-group full-width">
                 <label for="keywords">Keyword Search</label>
-                <input type="text" [(ngModel)]="keyword" id="keywords" name="keywords" placeholder="">
+                <input type="text" ngModel id="keywords" name="keywords" placeholder="">
             </div>
 
             <div class="form-group">
                 <label for="category">Category</label>
-                <select [(ngModel)]="category" id="category" name="category">
+                <select ngModel id="category" name="category_id">
                     <option value="1">Laptops</option>
                     <option value="2">Phones</option>
            
@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <label for="brand">Brand</label>
-                <select [(ngModel)]="brand" id="brand" name="brand">
+                <select ngModel id="brand" name="brand">
                     
                     <option *ngFor="let el of brandArr" [value]="el">{{el}}</option>
                 
@@ -37,7 +37,7 @@
                 <div class="rating-group">
                     <div class="rating-option">
                         
-                        <input name="rate" [(ngModel)]="ratee" type="number" placeholder="Amount of Rating(★)">
+                        <input name="rating" ngModel type="number" placeholder="Amount of Rating(★)">
                     </div>
 
                 </div>
@@ -46,14 +46,14 @@
             <div class="form-group full-width">
                 <label>Price(Min-Max)</label>
                 <div class="price-group">
-                    <input type="number" [(ngModel)]="minPrice" id="price-min" name="price_min" placeholder="Min Price" min="0" step="50">
-                    <input type="number" [(ngModel)]="maxPrice" id="price-max" name="price_max" placeholder="Max Price" min="0" step="50">
+                    <input type="number" ngModel id="price-min" name="price_min" placeholder="Min Price" min="0" step="50">
+                    <input type="number" ngModel id="price-max" name="price_max" placeholder="Max Price" min="0" step="50">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="sort-by">Sort by</label>
-                <select id="sort-by" name="sort_by" [(ngModel)]="sort">
+                <select id="sort-by" name="sort_by" ngModel>
                
                     <option value="price">Price</option>
                     <option value="rating">Rating</option>
@@ -64,14 +64,14 @@
 
             <div class="form-group">
                 <label for="sort-direction">Sort Direction</label>
-                <select id="sort-direction" name="sort_direction" [(ngModel)]="sortDir">
+                <select id="sort-direction" name="sort_direction" ngModel>
                     <option value="asc">asc↑</option>
                     <option value="desc">desc↓</option>
                 </select>
             </div>
 
             <div class="button-group">
-                <button type="submit" (click)="Search()" class="btn-search">Find</button>
+                <button type="submit" class="btn-search">Find</button>
                 <button type="reset" class="btn-reset" (click)="goToPage(1)">Reset</button>
             </div>
         </form>

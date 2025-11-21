@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { ApiService } from '../services/api.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { UserInfo } from '../models/userInfo';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -15,23 +16,40 @@ import { UserInfo } from '../models/userInfo';
 export class HeaderComponent {
 
 
-  constructor(private route : Router,private api : ApiService){
+  constructor(private route : Router,private api : ApiService,private authServ : AuthService){
 
+    effect(() => {
+      if(this.authServ.isAuthorised()){
+        this.getUser()
+      }
+    })
   }
-  hasToken = false
+
+  show = false
+
+  showAcc(){
+    this.show = !this.show
+  }
 
   ngOnInit(){
-    this.getUser()
-      this.access  =  localStorage.getItem('access_token');
-      this.hasToken = !!this.access
-      if (!this.hasToken) {
-    this.route.navigateByUrl('/sign-up');
-  }
+
+    if(this.data.verified == false){
+      this.route.navigateByUrl('/sign-up')
+    }
+
 
   }
+  
+
+  
+
+
 
   access  =  localStorage.getItem('access_token');
   refresh = localStorage.getItem('refresh_token');
+
+
+    isAuth = () => this.authServ.isAuthorised();
 
   SignOut(){
 
@@ -40,9 +58,14 @@ export class HeaderComponent {
     if(con == true){
          localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
+        this.authServ.logout()
+        this.route.navigateByUrl('/sign-up')
         window.location.reload()
     }
   }
+
+
+  
 
   getUser(){
     this.api.getAuth()

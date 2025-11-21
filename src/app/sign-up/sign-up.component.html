@@ -9,21 +9,21 @@
             <p>Fill All the Information Below</p>
         </div>
 
-        <form>
+        <form #SignUp="ngForm" (ngSubmit)="Submit(SignUp)">
             <div class="form-row">
                 <div class="form-group">
                     <label>First Name</label>
                     <input type="text" 
                            name="firstName"
                            placeholder="Enter Username" 
-                           [(ngModel)]="firstName">
+                           ngModel>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
                     <input type="text" 
                            name="lastName"
                            placeholder="Last Name" 
-                           [(ngModel)]="lastName">
+                           ngModel>
                 </div>
             </div>
 
@@ -33,11 +33,11 @@
                     <input type="number" 
                            name="age"
                            placeholder="Age" 
-                           [(ngModel)]="age">
+                           ngModel>
                 </div>
                 <div class="form-group">
                     <label>Gender</label>
-                    <select name="gender" [(ngModel)]="gender">
+                    <select name="gender" ngModel>
                         <option value="MALE">MALE</option>
                         <option value="FEMALE">FEMALE</option>
                         <option value="OTHER">OTHER</option>
@@ -50,7 +50,7 @@
                 <input type="email" 
                        name="email"
                        placeholder="Email" 
-                       [(ngModel)]="email" 
+                       ngModel 
                        required>
             </div>
 
@@ -59,7 +59,7 @@
                 <input type="password" 
                        name="password"
                        placeholder="Password" 
-                       [(ngModel)]="password">
+                       ngModel>
             </div>
 
             <div class="form-group">
@@ -67,7 +67,7 @@
                 <input type="text" 
                        name="address"
                        placeholder="Address" 
-                       [(ngModel)]="address">
+                       ngModel>
             </div>
 
             <div class="form-row">
@@ -75,16 +75,16 @@
                     <label>Phone</label>
                     <input type="text" 
                            name="phone"
-                           placeholder="Phone" 
+                           placeholder="Phone +995" 
                            value="+995"
-                           [(ngModel)]="phone">
+                           ngModel>
                 </div>
                 <div class="form-group">
                     <label>Zipcode</label>
                     <input type="number" 
                            name="zipcode"
                            placeholder="Zipcode" 
-                                [(ngModel)]="zipcode">
+                                ngModel>
                 </div>
             </div>
 
@@ -93,10 +93,10 @@
                 <input type="text" 
                        name="avatar"
                        placeholder="Avatar" 
-                       [(ngModel)]="avatar">
+                       ngModel>
             </div>
 
-            <button type="button" class="submit-btn" (click)="Submit()">
+            <button type="submit" class="submit-btn">
                 Submit
             </button>
           

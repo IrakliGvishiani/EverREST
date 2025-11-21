@@ -97,7 +97,7 @@
             padding: 40px;
         }
 
-        /* Gallery Section */
+
         .gallery-section {
             position: relative;
         }
@@ -193,7 +193,7 @@
             object-fit: cover;
         }
 
-        /* Details Section */
+
         .details-section h1 {
             font-size: 32px;
             color: #2c3e50;
@@ -392,7 +392,7 @@
         }
 
         .info-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
             padding: 20px;
             border-radius: 12px;
             color: white;
@@ -420,7 +420,7 @@
             opacity: 0.9;
         }
 
-        /* Responsive */
+
         @media (max-width: 968px) {
             .product-content {
                 grid-template-columns: 1fr;

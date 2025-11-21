@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ApiService } from '../services/api.service';
 import { Router, RouterLink } from "@angular/router";
@@ -23,32 +23,29 @@ export class SignUpComponent {
                   
 
   // }
-    firstName =""
-  lastName = ""
-  age = 0
-  email = ''
-  password = ""
-  address = ""
-  phone = "+995"
-  zipcode = ""
-  avatar = ""
-  gender = ""
+  //   firstName =""
+  // lastName = ""
+  // age = 0
+  // email = ''
+  // password = ""
+  // address = ""
+  // phone = "+995"
+  // zipcode = ""
+  // avatar = ""
+  // gender = ""
 
-  zip = ''
+  // zip = ''
    
 
 
-  Submit(){
+  Submit(info : NgForm){
 
 
-    let trimmedzip = this.zipcode?.toString()
     
-     
-    let trimmedPass = this.password?.trim() || ''
-    this.zip = trimmedzip
+    console.log(info);
     
 
-  if(!this.firstName || !this.lastName || this.age == 0 || this.age > 120 || !this.email.includes('@') || !trimmedPass || !this.address || !trimmedzip || !this.avatar || !this.gender || this.phone == '+995'){
+  if(!info.valid){
          Swal.fire({
         icon: 'error',
         title: '',
@@ -64,16 +61,16 @@ export class SignUpComponent {
       
           this.api.postO('https://api.everrest.educata.dev/auth/sign_up' , 
          {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        age: this.age,
-        email: this.email,
-        password: trimmedPass,
-        address: this.address,
-        phone: this.phone,
-        zipcode: trimmedzip,
-        avatar: this.avatar,
-        gender: this.gender
+        firstName: info.value.firstName,
+        lastName: info.value.lastName,
+        age: info.value.age,
+        email: info.value.email,
+        password: info.value.password,
+        address: info.value.address,
+        phone: info.value.phone,
+        zipcode: info.value.zipcode?.toString(),
+        avatar: info.value.avatar,
+        gender: info.value.gender
       }
       ).subscribe(
         
@@ -86,13 +83,13 @@ export class SignUpComponent {
         });
         console.log(succ);
                  this.api.postO('https://api.everrest.educata.dev/auth/verify_email', {
-    email : this.email
+    email : info.value.email
   }).subscribe(
     {
       next: (success) => {
                 Swal.fire({
           title: "Success!",
-          text: `Verify email sent to ${this.email}!`,
+          text: `Verify email sent to ${info.value.email}!`,
           icon: "success"
         });
 

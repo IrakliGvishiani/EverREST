@@ -70,3 +70,39 @@ a{
 p{
     margin: 0;
 }
+
+.acc{
+    position: fixed;
+    width: 230px;
+    height: 200px;
+    background-color: rgb(0, 0, 0);
+    top: 75px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.butDiv{
+    display: flex;
+    gap: 10px;
+    padding-top: 20px;
+    justify-content: center;
+}
+
+.accBut{
+    font-size: 14px;
+    background-color: rgb(6, 195, 6);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 13px;
+}
+.LogBut{
+        font-size: 14px;
+    background-color: rgb(195, 6, 6);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 13px;
+}
