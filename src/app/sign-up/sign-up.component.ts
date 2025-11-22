@@ -35,7 +35,8 @@ export class SignUpComponent {
   // gender = ""
 
   // zip = ''
-   
+
+
 
 
   Submit(info : NgForm){
@@ -97,11 +98,11 @@ export class SignUpComponent {
         
       },
       error: (err) => {
-                Swal.fire({
-          title: "error!",
-          text: "Email Already Verified",
-          icon: "error"
-        });
+        //         Swal.fire({
+        //   title: "error!",
+        //   text: "Email Already Verified",
+        //   icon: "error"
+        // });
 
         console.log(err);
         
@@ -123,11 +124,11 @@ export class SignUpComponent {
             
             if(err.status == 400){
               
-                      Swal.fire({
-              title: "Incorrect Data!",
-              text: "Fill Fields with Aprropriate Data!",
-              icon: "error"
-            });
+            //           Swal.fire({
+            //   title: "Incorrect Data!",
+            //   text: "Fill Fields with Aprropriate Data!",
+            //   icon: "error"
+            // });
             console.log(err.status);
             
                   console.log(err.error);         
@@ -135,11 +136,11 @@ export class SignUpComponent {
 
             if(err.status == 409){
               
-                      Swal.fire({
-              title: "Email Already Exists!",
-              text: "Fill Fields with Aprropriate Data!",
-              icon: "error"
-            });
+            //           Swal.fire({
+            //   title: "Email Already Exists!",
+            //   text: "Fill Fields with Aprropriate Data!",
+            //   icon: "error"
+            // });
             console.log(err.error);
             
              console.log(err.status);

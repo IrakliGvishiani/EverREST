@@ -1,8 +1,51 @@
-div{
-    display: flex;
-    width: 100%;
-    background-color: black;
-    height: 100px;
-    
-    
+.footer {
+  background: #1c1c1c;
+  color: #e0e0e0;
+  padding: 30px 20px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-left h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #fff;
+}
+
+.footer-left p {
+  margin-top: 8px;
+  color: #b7b7b7;
+  max-width: 280px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: #b7b7b7;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  text-align: center;
+  color: #8c8c8c;
+  font-size: 14px;
 }

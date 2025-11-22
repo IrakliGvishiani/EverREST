@@ -59,8 +59,8 @@ export class HeaderComponent {
          localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         this.authServ.logout()
-        this.route.navigateByUrl('/sign-up')
         window.location.reload()
+        this.route.navigateByUrl('/sign-up')
     }
   }
 

@@ -76,11 +76,11 @@ refresh = localStorage.getItem('refresh_token');
                 
       },
       error: (err) => {
-                      Swal.fire({
-                  title: "error!",
-                  text: "Something Went Wrong!",
-                  icon: "error"
-                });
+                //       Swal.fire({
+                //   title: "error!",
+                //   text: "Something Went Wrong!",
+                //   icon: "error"
+                // });
                 console.log(err);
                 
       }
@@ -91,6 +91,20 @@ refresh = localStorage.getItem('refresh_token');
 
 
     
+  }
+
+  quantity = 1
+
+  up(){
+    if(this.product.stock>this.quantity){
+       this.quantity++
+    }
+  }
+
+  down(){
+    if(this.quantity > 1){
+      this.quantity--
+    }
   }
 
 

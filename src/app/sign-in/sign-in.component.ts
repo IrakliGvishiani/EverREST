@@ -25,15 +25,6 @@ export class SignInComponent {
 
 
   Sign(inf : NgForm){
-    if(!inf.valid){
-            Swal.fire({
-                title: "error!",
-                text: "Fill Fields",
-                icon: "error"
-              });
-    }
-    else{
-      
       this.api.postO('https://api.everrest.educata.dev/auth/sign_in', {
         
      email : inf.value.email,
@@ -63,11 +54,11 @@ export class SignInComponent {
           },
           error: (err) => {
             
-                Swal.fire({
-                title: "error!",
-                text: "Invalid Email or Passwordd",
-                icon: "error"
-              });
+              //   Swal.fire({
+              //   title: "error!",
+              //   text: "Invalid Email or Passwordd",
+              //   icon: "error"
+              // });
               console.log(err);
               
             
@@ -77,7 +68,7 @@ export class SignInComponent {
       )
       
       
-    }
+    
   }
 
 }

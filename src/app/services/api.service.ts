@@ -58,6 +58,18 @@ patch(url : string, obj: any){
 //   return this.http.patch(url,obj)
 // }
 
+//// DELETE
+delete(url: string){
+  let token = localStorage.getItem(`access_token`)
+
+
+    return this.http.delete(url, {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    })
+  })
+}
+
 
 
 // SEARCH

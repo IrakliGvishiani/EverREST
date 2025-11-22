@@ -1,0 +1,55 @@
+
+
+
+// .overlay{
+//   width: 100%;
+//   height: 100vh;
+//   background-color: rgba(128, 128, 128, 0.39);
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+
+// .dialog{
+//   border: 2px solid black;
+//   box-shadow: 5px 5px 5px gray;
+// }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  transition: 0.3s ease-in-out;
+}
+
+.dialog {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: 0.3s ease-in-out;
+}
+
+button {
+  margin-top: 15px;
+  padding: 7px 14px;
+  border: none;
+  background: crimson;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+
+<!-- 
+<div class="overlay" *ngIf="showDialog()">
+     <div class="dialog">
+         <h1>from interceptor : {{errMessage()}}</h1>
+         <button (click)="closeDilsog()">close</button>
+     </div>
+</div> -->
+
+<div class="overlay" *ngIf="showDialog()">
+  <div class="dialog">
+    <h3>Error</h3>
+
+    <p>{{errMessage() }}</p>
+
+    <button (click)="closeDilsog()">OK</button>
+  </div>
+</div>

@@ -40,9 +40,13 @@ export class HomeComponent {
 // sort! : string
 // sortDir! : string
 
+  access  =  localStorage.getItem('access_token');
+refresh = localStorage.getItem('refresh_token');
+
   ngOnInit(){
 
      
+    
     
     if(this.refresh === null || this.access === null){
       this.route.navigateByUrl('/sign-up')
@@ -64,8 +68,7 @@ export class HomeComponent {
 
   }
 
-  access  =  localStorage.getItem('access_token');
-refresh = localStorage.getItem('refresh_token');
+
 
 
 refreshToken() {

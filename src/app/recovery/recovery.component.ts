@@ -19,16 +19,16 @@ export class RecoveryComponent {
 
     console.log(mail.value);
     
-    if(!mail.valid){
-               Swal.fire({
-              icon: 'warning',
-              title: '',
-              text: 'Please fill field!',
-              confirmButtonText: 'Ok',
-              confirmButtonColor: '#667eea'
-            });
-    }
-    else{
+    // if(!mail.valid){
+    //            Swal.fire({
+    //           icon: 'warning',
+    //           title: '',
+    //           text: 'Please fill field!',
+    //           confirmButtonText: 'Ok',
+    //           confirmButtonColor: '#667eea'
+    //         });
+    // }
+  
       this.api.postO(`https://api.everrest.educata.dev/auth/recovery`, {
         email: mail.value.email
       }).subscribe({
@@ -47,19 +47,19 @@ export class RecoveryComponent {
 
         },
         error: err => {
-                       Swal.fire({
-              icon: 'error',
-              title: 'Oops',
-              text: "Something's Wrong!",
-              confirmButtonText: 'Ok',
-              confirmButtonColor: '#667eea'
-            });
+              //          Swal.fire({
+              // icon: 'error',
+              // title: 'Oops',
+              // text: "Something's Wrong!",
+              // confirmButtonText: 'Ok',
+            //   // confirmButtonColor: '#667eea'
+            // });
 
             console.log(err);
             
         }
       })
-    }
+    
   }
   
 }
