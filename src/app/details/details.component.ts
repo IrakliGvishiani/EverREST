@@ -108,6 +108,57 @@ refresh = localStorage.getItem('refresh_token');
   }
 
 
+  add(){
+    // if(this.product.stock < 1){
+    //   alert('No Product in stock!')
+    // }
+   
+      this.api.getCart('https://api.everrest.educata.dev/shop/cart')
+      .subscribe({
+        next: s => {
+          console.log(s);
+
+          this.api.patch('https://api.everrest.educata.dev/shop/cart/product',{
+            id: this.id,
+            quantity : this.quantity
+          }).subscribe({
+            next: res => {
+              console.log(`Added to cart ${res}`);
+                                    Swal.fire({
+                  title: "",
+                  text: "Added to Cart!",
+                  icon: "success"
+                });
+            },
+            error: err => {
+              console.log(err);
+              
+            }
+          })
+          
+        },
+        error: err => {
+          console.log(err);
+          if(err == 409){
+            this.api.postO('https://api.everrest.educata.dev/shop/cart/product', {
+              id: this.id,
+              quantity : this.quantity
+            })
+            .subscribe({
+              next: res => {
+                alert('cart created!')
+              },
+              error: err => {
+                console.log(err);
+                
+              }
+            })
+          }
+        }
+      })
+    
+  }
+
 }
 
 

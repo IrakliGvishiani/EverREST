@@ -233,3 +233,9 @@
             justify-content: center;
             margin-bottom: 50px;
         }
+
+        @media (max-width: 640px) {
+                .pi{
+                    display: none;
+                }
+        }

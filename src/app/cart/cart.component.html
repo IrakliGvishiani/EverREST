@@ -1,0 +1,28 @@
+
+
+<div class="con">
+  <div *ngFor="let el of cartView" class="card" style="width: 18rem;">
+  <img style="background-size: cover;height: 230px;" [src]="el.product.thumbnail" class="card-img-top" alt="...">
+  <div  class="card-body">
+    <h5 class="card-title">{{el.product.title}}</h5>
+    <p> Quantity :{{el.quantity}}</p>
+    <p class="card-text">{{el.product.brand}}</p>
+    <a class="btn btn-danger" (click)="RemoveProd(el.product._id)">Remove From Cart</a>
+    <button style="margin-top: 5px;" class="btn btn-primary" (click)="generate(el.product.title)">Get QR</button>
+  </div>
+</div>
+</div>
+
+<div  *ngIf="show" class="rame">
+  <div class="qr">
+      <img style="width: 200px;height: 200px;" [src]="qrImage" alt="">
+      <i (click)="hide()" class="fa-solid fa-x xx"></i>
+  </div>
+
+</div>
+
+
+<div class="conta">
+   <a style="font-size: 20px;"  class="btn btn-success" (click)="Buy()">Buy Products</a>
+   <a style="font-size: 20px;" (click)="deleteCart()"  class="btn btn-danger">Delete Cart</a>
+</div>

@@ -16,6 +16,16 @@ export class ApiService {
     return this.http.get<T>(url)
   }
 
+  getCart<T = any>(url : string): Observable<T>{
+    const token = localStorage.getItem('access_token');
+
+    return this.http.get<T>(url, {
+      headers: new HttpHeaders({
+         Authorization: `Bearer ${token}`
+      })
+    })
+  }
+
   getAuth<T = any>(): Observable<T> {
   const token = localStorage.getItem('access_token');
 
@@ -67,6 +77,18 @@ delete(url: string){
     headers: new HttpHeaders({
       Authorization: `Bearer ${token}`
     })
+  })
+}
+
+deleteProd(url: string,obj : any){
+  let token = localStorage.getItem(`access_token`)
+
+
+    return this.http.delete(url, {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    }),
+    body: obj
   })
 }
 

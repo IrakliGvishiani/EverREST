@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { UserInfo } from '../models/userInfo';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -9,18 +9,36 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,ReactiveFormsModule],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
 export class AccountComponent {
 
-constructor(private api : ApiService,private route : Router){}
+constructor(private api : ApiService,private route : Router,private fb : FormBuilder){}
+
 
 
   ngOnInit(){
-    this.getUser()
+
+
+    this.updateForm = this.fb.group({
+         firstName: [``],
+      lastName: [''],
+      age: [''],
+      address: [''],
+      phone: [''],
+      zipcode: [''],
+      avatar: [''],
+      gender: ['']
+    })
+
+        this.getUser()
+
   }
+
+
+  updateForm! : FormGroup
 
     getUser(){
       this.api.getAuth()
@@ -29,6 +47,18 @@ constructor(private api : ApiService,private route : Router){}
           // console.log(resp);
             this.data = resp
             console.log(this.data);
+
+
+                    this.updateForm.patchValue({
+          firstName: resp.firstName,
+          lastName: resp.lastName,
+          age: resp.age,
+          address: resp.address,
+          phone: resp.phone,
+          zipcode: resp.zipcode,
+          avatar: resp.avatar,
+          gender: resp.gender
+        });
             
         },
         error: err => {
@@ -82,20 +112,13 @@ constructor(private api : ApiService,private route : Router){}
 
     }
 
-    updateAcc(info : any){
-      this.api.patch('https://api.everrest.educata.dev/auth/update', {
-          firstName: info.value.firstName,
-     lastName: info.value.lastName,
-     age: info.value.age,
-     address: info.value.address,
-     phone: info.value.phone,
-     zipcode: info.value.zipcode,
-     avatar: info.value.avatar,
-     gender: info.value.gender
-
-      }).subscribe({
+    updateAcc(){
+      let body = this.updateForm.value
+      
+      this.api.patch('https://api.everrest.educata.dev/auth/update', body  )
+      .subscribe({
         next: s => {
-          alert(`account updated! ${s}`)
+          alert(`account updated!`)
         },
         error: err => {
           // alert(`error: ${err}`)

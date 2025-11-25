@@ -1,0 +1,49 @@
+
+.con{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.conta{
+    display: flex;width: 100%;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 20px;
+}
+
+.rame{
+      position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  transition: 0.3s ease-in-out;
+}
+
+.qr{
+      background: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: 0.3s ease-in-out;
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.xx{
+    position: absolute;
+    color: red;
+    font-size: 30px;
+    cursor: pointer;
+}

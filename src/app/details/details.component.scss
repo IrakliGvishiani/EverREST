@@ -459,3 +459,14 @@
                 flex-direction: column;
             }
         }
+
+        @media (max-width: 960px) {
+            .hdr{
+                justify-content: center;
+                width: 100%;
+
+                h1{
+                    font-size: 90px;
+                }
+            }
+        }

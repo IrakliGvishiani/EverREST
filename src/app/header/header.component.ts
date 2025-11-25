@@ -1,5 +1,5 @@
 import { Component, effect } from '@angular/core';
-import { Router, RouterLink } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { ApiService } from '../services/api.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -59,7 +59,8 @@ export class HeaderComponent {
          localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         this.authServ.logout()
-        window.location.reload()
+        // window.location.reload()
+        this.show = false
         this.route.navigateByUrl('/sign-up')
     }
   }
@@ -86,5 +87,7 @@ export class HeaderComponent {
 
 
   data! : UserInfo
+
+  active = 'activ'
 
 }

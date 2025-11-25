@@ -106,3 +106,17 @@ p{
     border-radius: 20px;
     padding: 4px 13px;
 }
+
+.activ{
+    text-decoration: underline;
+}
+
+@media (max-width: 785px) {
+    .hi{
+        display: none;
+    }
+
+    nav{
+        padding: 0px 20px;
+    }
+}
