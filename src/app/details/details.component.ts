@@ -123,7 +123,7 @@ refresh = localStorage.getItem('refresh_token');
             quantity : this.quantity
           }).subscribe({
             next: res => {
-              console.log(`Added to cart ${res}`);
+              console.log(`Added to cart!`);
                                     Swal.fire({
                   title: "",
                   text: "Added to Cart!",
@@ -146,7 +146,14 @@ refresh = localStorage.getItem('refresh_token');
             })
             .subscribe({
               next: res => {
-                alert('cart created!')
+
+                  Swal.fire({
+                  title: "",
+                  text: "Cart Created!",
+                  icon: "success"
+                });
+                console.log(res);
+                
               },
               error: err => {
                 console.log(err);
