@@ -24,7 +24,11 @@ export class DetailsComponent {
   access  =  localStorage.getItem('access_token');
 refresh = localStorage.getItem('refresh_token');
 
+stars : number[] = []
+
   ngOnInit(){
+
+    
         if(this.refresh === null || this.access === null){
       this.route.navigateByUrl('/sign-up')
     }
@@ -34,6 +38,10 @@ refresh = localStorage.getItem('refresh_token');
       this.product = resp
       console.log(this.product);
 
+      const roundedRating = Math.round(this.product.rating);  
+
+     this.stars = Array.from({ length: roundedRating });
+      
     })
   }
   id! : string
@@ -166,10 +174,12 @@ refresh = localStorage.getItem('refresh_token');
     
   }
 
+
+
+
 }
 
 
 
 
 
-// 691a00d4584627bfec1a5249  id of account

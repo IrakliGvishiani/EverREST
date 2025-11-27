@@ -75,8 +75,9 @@
                     <h2 style="font-size: 20px;">Category : {{product.category.name}}</h2>
                     
                     <div class="rating">
-                        <div class="stars">
-                            <span>★★★★★</span>
+                        <div  *ngFor="let _ of stars" class="stars">
+                            <span style="margin: 0;">★</span>
+                        
                         </div>
                         <span class="reviews">({{product.rating}} Rating)</span>
                     </div>
