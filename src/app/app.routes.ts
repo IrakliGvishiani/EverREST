@@ -6,7 +6,7 @@ import { defendGuard } from './guards/defend.guard';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'sign-up',
         pathMatch: 'full'
     },
     {
