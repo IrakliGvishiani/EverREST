@@ -19,7 +19,7 @@ export class InterceptorService implements HttpInterceptor {
                 this.errserv.showDialog()
               }
                else if(err.status == 404){
-                console.log("not fountd");
+                console.log("not found");
                 this.errserv.setErrMessage("Not Found!")
                 this.errserv.showDialog()
               }
