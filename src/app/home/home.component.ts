@@ -45,24 +45,9 @@ refresh = localStorage.getItem('refresh_token');
 
   ngOnInit(){
 
-          this.api.postO(
-    'https://api.everrest.educata.dev/auth/refresh',
-    {
-      access_token: this.access,
-      refresh_token: this.refresh
-    }
-  ).subscribe({
-    next: (res: any) => {
-      localStorage.setItem('access_token', res.access_token);
-      this.access = res.access_token;
-      console.log("Token refreshed");
+    console.log('shevedi');
+    
 
-    },
-    error: err => {
-      console.log("Refresh failed", err);
-      this.route.navigateByUrl('/sign-up');
-    }
-  });
      
     
     
@@ -90,7 +75,24 @@ refresh = localStorage.getItem('refresh_token');
 
 
 refreshToken() {
+            this.api.postO(
+    'https://api.everrest.educata.dev/auth/refresh',
+    {
+      access_token: this.access,
+      refresh_token: this.refresh
+    }
+  ).subscribe({
+    next: (res: any) => {
+      localStorage.setItem('access_token', res.access_token);
+      this.access = res.access_token;
+      console.log("Token refreshed");
 
+    },
+    error: err => {
+      console.log("Refresh failed", err);
+      this.route.navigateByUrl('/sign-up');
+    }
+  });
 }
 
 
