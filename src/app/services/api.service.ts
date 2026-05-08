@@ -9,7 +9,9 @@ export class ApiService {
 
   constructor(private http : HttpClient) { }
 
-
+  access  =  localStorage.getItem('access_token');
+  refresh = localStorage.getItem('refresh_token');
+  
   ///GETT
 
   gett<T = any>(url: string): Observable<T>{
@@ -25,6 +27,17 @@ export class ApiService {
       })
     })
   }
+
+  refreshToken(): Observable<any> {
+  return this.postO(
+    'https://api.everrest.educata.dev/auth/refresh',
+    {
+      access_token: localStorage.getItem('access_token'),
+      refresh_token: localStorage.getItem('refresh_token')
+    }
+  );
+}
+
 
   getAuth<T = any>(): Observable<T> {
   const token = localStorage.getItem('access_token');
@@ -91,6 +104,7 @@ deleteProd(url: string,obj : any){
     body: obj
   })
 }
+
 
 
 

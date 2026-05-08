@@ -13,7 +13,7 @@
                 
                 <div class="gallery-section">
                     <div class="main-image">
-                        <span class="badge"> Discount {{product.price.discountPercentage}}%</span>
+                        <span class="badge"> Discount {{product?.price?.discountPercentage}}%</span>
                         
                           
                         <div id="carouselExample" class="carousel slide">
@@ -72,7 +72,7 @@
           
                 <div class="details-section">
                     <h1>{{product.title}}</h1>
-                    <h2 style="font-size: 20px;">Category : {{product.category.name}}</h2>
+                    <h2 style="font-size: 20px;">Category : {{product?.category?.name}}</h2>
                     
                     <div class="rating">
                         <div  *ngFor="let _ of stars" class="stars">
@@ -85,8 +85,8 @@
                     <p>Warranty: {{product.warranty}}</p>
 
                     <div class="price-section">
-                        <span class="current-price">{{product.price.current}} {{product.price.currency}}</span>
-                        <span class="original-price">{{product.price.beforeDiscount}} {{product.price.currency}}</span>
+                        <span class="current-price">{{product?.price?.current}} {{product?.price?.currency}}</span>
+                        <span class="original-price">{{product?.price?.beforeDiscount}} {{product?.price?.currency}}</span>
                     </div>
 
                     <p class="description">

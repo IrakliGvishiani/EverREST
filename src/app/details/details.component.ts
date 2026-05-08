@@ -130,7 +130,7 @@ stars : number[] = []
             id: this.id,
             quantity : this.quantity
           }).subscribe({
-            next: res => {
+            next: () => {
               console.log(`Added to cart!`);
                                     Swal.fire({
                   title: "",
@@ -140,14 +140,13 @@ stars : number[] = []
             },
             error: err => {
               console.log(err);
-              
             }
           })
           
         },
         error: err => {
           console.log(err);
-          if(err == 409){
+          if(err.status == 409){
             this.api.postO('https://api.everrest.educata.dev/shop/cart/product', {
               id: this.id,
               quantity : this.quantity

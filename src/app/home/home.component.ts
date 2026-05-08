@@ -45,7 +45,7 @@ refresh = localStorage.getItem('refresh_token');
 
   ngOnInit(){
 
-    console.log('shevedi');
+ 
     
 
      
@@ -55,7 +55,7 @@ refresh = localStorage.getItem('refresh_token');
       this.route.navigateByUrl('/sign-up')
     }
 
-    this.refreshToken()
+    // this.refreshToken()
 
 
 
@@ -65,17 +65,21 @@ refresh = localStorage.getItem('refresh_token');
   this.loadProducts()
 
 
-
   console.log(this.access);
+  
   
 
   }
 
+  
 
 
 
 refreshToken() {
-            this.api.postO(
+//  let granted = true;
+
+
+               this.api.postO(
     'https://api.everrest.educata.dev/auth/refresh',
     {
       access_token: this.access,
@@ -93,31 +97,36 @@ refreshToken() {
       this.route.navigateByUrl('/sign-up');
     }
   });
+
+
+//  while(granted){
+
+//   granted = false;
+//  }
 }
 
 
-// getTokenExpiration(token: string): number | null {
-//   if (!token || !token.includes('.')) return null;
+getTokenExpiration(token: string): number | null {
+  if (!token || !token.includes('.')) return null;
 
-//   try {
-//     const payload = JSON.parse(atob(token.split('.')[1]));
-//     return payload.exp ? payload.exp * 1000 : null;
-//   } catch {
-//     return null;
-//   }
-// }
-// isTokenExpired(token: string): boolean {
-//   const exp = this.getTokenExpiration(token);
-//   if (!exp) return true;
-//   return Date.now() > exp;
-// }
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.exp ? payload.exp * 1000 : null;
+  } catch {
+    return null;
+  }
+}
+isTokenExpired(token: string): boolean {
+  const exp = this.getTokenExpiration(token);
+  if (!exp) return true;
+  return Date.now() > exp
+}
     plus(){
       this.pageIndex+=1
         
   }
   pageIndex = 1
   
-  page = 0
 
   loadProducts(){
 
@@ -130,7 +139,7 @@ refreshToken() {
       
       this.products = this.data.products
       // console.log(this.data.products);
-      console.log(this.page);
+   
       
     },
     error : (err) => {

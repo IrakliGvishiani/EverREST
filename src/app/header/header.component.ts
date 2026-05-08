@@ -31,11 +31,12 @@ export class HeaderComponent {
     this.show = !this.show
   }
 
+  hide(){
+    this.show = false
+  }
   ngOnInit(){
 
-    if(this.data.verified == false){
-      this.route.navigateByUrl('/sign-up')
-    }
+
 
   }
   
@@ -74,7 +75,9 @@ export class HeaderComponent {
         // console.log(resp);
           this.data = resp
           console.log(this.data);
-          
+            if(this.data.verified == false){
+            this.route.navigateByUrl('/sign-up')
+  }
       },
       error: err => {
         console.log(err);
