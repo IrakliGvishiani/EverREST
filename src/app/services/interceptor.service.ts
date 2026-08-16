@@ -30,9 +30,6 @@ export class InterceptorService implements HttpInterceptor {
     private router: Router
   ) {}
 
-  // =========================
-  // TOKEN EXPIRATION
-  // =========================
 
   getTokenExpiration(token: string): number | null {
 
@@ -66,9 +63,7 @@ export class InterceptorService implements HttpInterceptor {
     return Date.now() > exp;
   }
 
-  // =========================
-  // INTERCEPTOR
-  // =========================
+
 
   intercept(
     req: HttpRequest<any>,
@@ -77,18 +72,16 @@ export class InterceptorService implements HttpInterceptor {
 
     const accessToken = localStorage.getItem('access_token');
 
-    // 🔥 refresh endpoint-ზე არ გავუშვათ refresh logic
+      
     const isRefreshRequest =
       req.url.includes('/auth/refresh');
 
-    // 🔥 sign in / sign up
+
     const isAuthRequest =
       req.url.includes('/auth/sign_in') ||
       req.url.includes('/auth/sign_up');
 
-    // =========================
-    // თუ token expired არის
-    // =========================
+
 
     if (
       accessToken &&
@@ -103,13 +96,13 @@ export class InterceptorService implements HttpInterceptor {
 
         switchMap((res: any) => {
 
-          // 🔥 ახალი token
+          
           localStorage.setItem(
             'access_token',
             res.access_token
           );
 
-          // 🔥 request retry ახალი token-ით
+          
           const clonedReq = req.clone({
             setHeaders: {
               Authorization:
@@ -124,7 +117,7 @@ export class InterceptorService implements HttpInterceptor {
 
           console.log('Refresh failed');
 
-          // 🔥 logout
+          
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
 
@@ -135,9 +128,7 @@ export class InterceptorService implements HttpInterceptor {
       );
     }
 
-    // =========================
-    // ჩვეულებრივი request
-    // =========================
+
 
     let modifiedReq = req;
 
@@ -155,9 +146,7 @@ export class InterceptorService implements HttpInterceptor {
       });
     }
 
-    // =========================
-    // REQUEST + ERROR HANDLING
-    // =========================
+
 
     return next.handle(modifiedReq).pipe(
 
